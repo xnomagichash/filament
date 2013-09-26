@@ -71,12 +71,14 @@ def deploy(module_name=None, resume=False, lock_root=False):
     api.put(lpath, SRV_ROOT, use_sudo=True)
     api.run('chown -R www-data {0}'.format(rpath))
     api.run('chmod -R 500 {0}'.format(rpath))
+    api.put(config('uwsgi.ini'), rpath, use_sudo=True)
 
     # extract socket_name
     with open(config('uwsgi.ini')) as ini:
         conf = ConfigParser.RawConfigParser()
         conf.readfp(ini)
-        socket_name = conf.get('uwsgi', 'module')
+        socket_name = conf.get('uwsgi', 'socket')
+
 
     # configure web server
     render('nginx.conf', '/etc/nginx/nginx.conf',
