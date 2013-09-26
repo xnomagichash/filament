@@ -95,7 +95,7 @@ def deploy(module_name=None, resume=False, lock_root=False):
     api.run('pip install supervisor')
     render('supervisord.conf', '/etc/supervisord.conf',
         flask_dir = module_name,
-        location = rpath,
+        location = SRV_ROOT,
         ini_file = os.path.join(rpath, 'uwsgi.ini'),
     )
 
