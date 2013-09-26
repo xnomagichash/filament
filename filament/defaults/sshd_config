@@ -1,0 +1,4 @@
+PermitRootLogin no
+PermitEmptyPasswords no
+PasswordAuthentication no
+AllowUsers admin
