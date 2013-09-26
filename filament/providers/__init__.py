@@ -11,7 +11,6 @@ class Provider(type):
 
     @classmethod
     def load(cls, fp, section=None):
-        print cls._providers
         with open(fp) as providerf:
             rcp = ConfigParser.RawConfigParser()
             rcp.readfp(providerf)

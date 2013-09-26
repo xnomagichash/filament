@@ -39,7 +39,8 @@ class Droplet(object):
         except AttributeError:
             raise
         else:
-            self.id = r.json()['droplet']['id']
+            data = r.json()
+            self.id = data['droplet']['id']
             return self
 
     @property
@@ -155,6 +156,7 @@ class Droplet(object):
             print("Droplet {0} ready. Connecting...".format(self.id))
         while True:
             try:
+                api.env.host_string = self.ip_address
                 api.run('apt-get update', quiet=True)
             except Exception:
                 print("Droplet {0} could not connect...".format(self.id))

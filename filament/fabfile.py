@@ -45,7 +45,6 @@ def deploy(module_name=None, resume=False, lock_root=False):
     server = Provider.load(env.provider)
     server.name = "-".join((app.name, uuid4().hex))
     server.create().wait()
-    env.host_string = server.ip_address
 
     # prepare system software
     api.run('apt-get install -y openssh-server')
